@@ -3,10 +3,10 @@ import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { join } from 'path';
 
-@ApiTags('API') // Group all endpoints under "API" tag in Swagger
+@ApiTags('API') // Tag trong Swagger
 @Controller('api')
 export class AppController {
-  // 1. Welcome Message
+  // 1. Api trả về lời chào
   @Get('hello')
   @ApiOperation({ summary: 'Get a welcome message' })
   @ApiResponse({ status: 200, description: 'Returns a welcome message' })
@@ -14,7 +14,7 @@ export class AppController {
     return 'Welcome to my WebAPI!';
   }
 
-  // 2. User Information
+  // 2. Api trả về thông tin người dùng với các trường id, Name, Email
   @Get('user/:id/Name/:Name/Email/:Email')
   @ApiOperation({ summary: 'Get user information' })
   @ApiParam({ name: 'id', description: 'User ID', example: '1' })
@@ -33,7 +33,7 @@ export class AppController {
     };
   }
 
-  // 3. Products List
+  // 3. Api trả về danh sách các sản phẩm có sẵn(id, name, price)
   @Get('products')
   @ApiOperation({ summary: 'Get a list of products' })
   @ApiResponse({ status: 200, description: 'Returns a list of products' })
@@ -45,7 +45,7 @@ export class AppController {
     ];
   }
 
-  // 4. Sum of Two Numbers
+  // 4. Api tính tổng 2 số
   @Get('sum/:a/:b')
   @ApiOperation({ summary: 'Get the sum of two numbers' })
   @ApiParam({ name: 'a', description: 'First number', example: 5 })
@@ -62,7 +62,7 @@ export class AppController {
     return { a: parseInt(a), b: parseInt(b), sum };
   }
 
-  // 5. Image Content
+  // 5. Api lấy ảnh từ 1 nguồn
   @Get('image')
   @ApiOperation({ summary: 'Get an image' })
   @ApiResponse({
@@ -74,7 +74,7 @@ export class AppController {
     const imagePath = join(
       __dirname,
       '../assets/anime-youjo-senki-tanya-degurechaff-wallpaper-preview.jpg',
-    ); // Path to the image
+    ); //Đường dẫn đến ảnh
     res.sendFile(imagePath);
   }
 }

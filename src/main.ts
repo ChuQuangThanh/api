@@ -5,10 +5,10 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable CORS
+  // Cho phép các yêu cầu từ domain khác được truy cập
   app.enableCors();
 
-  // Swagger Configuration
+  // Thiết lập SwaggerDocument
   const config = new DocumentBuilder()
     .setTitle('API Demo')
     .setDescription('API documentation for the API Demo project')
